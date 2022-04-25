@@ -40,6 +40,37 @@ export default function Login() {
       })
   }
 
+  // const handleDelete = (e) => {
+  //   e.preventDefault()
+  //   swal({
+  //     title: 'Tem certeza?',
+  //     text: 'Você não poderá reverter isso!',
+  //     icon: 'warning',
+  //     buttons: true,
+  //     dangerMode: true,
+  //   }).then((willDelete) => {
+  //     if (willDelete) {
+  //       swal('Poof! Your imaginary file has been deleted!', {
+  //         icon: 'success',
+  //       })
+  //     } else {
+  //       swal('Your imaginary file is safe!')
+  //     }
+  //   })
+  // }
+
+  // <FiDelete
+  //   size={20}
+  //   color="#FFF"
+  //   onClick={handleClear}
+  //   style={{
+  //     position: 'absolute',
+  //     right: '10px',
+  //     top: '10px',
+  //     cursor: 'pointer',
+  //   }}
+  // />
+
   return (
     /* "handleSubmit" will validate your inputs before invoking "onSubmit" */
     <form onSubmit={handleSubmit(onSubmit)} className="login-form">
@@ -79,7 +110,7 @@ export default function Login() {
         <button className="area-botao" onClick={() => navigate('/')}>
           Login
         </button>
-         {/* texto da parte inferior */}
+        {/* texto da parte inferior */}
         <div className="text-center">
           <span className="txt1">Não possui conta? </span>
           <Link className="txt2" to="/register">

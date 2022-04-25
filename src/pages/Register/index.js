@@ -3,12 +3,14 @@ import { Link } from 'react-router-dom'
 import { LayoutComponents } from '../../componentes/LayoutComponents'
 import Header from '../../componentes/Header'
 import axios from 'axios'
+import { FiDelete } from 'react-icons/fi'
 import { useForm } from 'react-hook-form'
 import InputMask from 'react-input-mask'
 import swal from 'sweetalert'
 
 export default function Register() {
   const { register, handleSubmit } = useForm({ mode: 'onSubmit' })
+  const [showIcon, setShowIcon] = useState(false)
   const [nome, setNome] = useState('')
   const [cpf, setCpf] = useState('')
   const [telefone, setTelefone] = useState('')
@@ -100,6 +102,36 @@ export default function Register() {
     }
   }
 
+  const handleClear = () => {
+    if (nome) {
+      return setNome('')
+    }
+    if (cpf) {
+      return setCpf('')
+    }
+    if (telefone) {
+      return setTelefone('')
+    }
+    if (email) {
+      return setEmail('')
+    }
+    if (senha) {
+      return setSenha('')
+    }
+  }
+
+  const validateIconClear = (data) => {
+    if (
+      data.nome.length <= 0 ||
+      data.cpf.length <= 0 ||
+      data.telefone.length <= 0 ||
+      data.email.length <= 0 ||
+      data.senha.length <= 0
+    ) {
+      return setShowIcon(false)
+    }
+  }
+
   return (
     /* "handleSubmit" will validate your inputs before invoking "onSubmit" */
     <form onSubmit={handleSubmit(onSubmit)} className="login-form">
@@ -114,6 +146,10 @@ export default function Register() {
 
         {/* Campo Nome */}
         <div className="wrapperInputDiv">
+          {!validateIconClear && (
+            <FiDelete className="iconDelete" onClick={handleClear} />
+          )}
+
           <div className="wrap-input inputIn">
             <input
               {...register('nome')}
